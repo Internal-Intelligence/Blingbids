@@ -29,6 +29,7 @@ const config: Config = {
           price: "#FF2D95",
           "price-light": "#FF6BB8",
           border: "rgba(255,255,255,0.08)",
+          // Legacy aliases → new palette (no yellow)
           black: "#07050D",
           gold: "#FF2D95",
           "gold-light": "#FF6BB8",
@@ -41,18 +42,28 @@ const config: Config = {
         body: ["var(--font-body)", "system-ui", "sans-serif"],
       },
       backgroundImage: {
-        "price-gradient": "linear-gradient(135deg, #FF6BB8 0%, #FF2D95 45%, #B026FF 100%)",
-        "rush-gradient": "linear-gradient(135deg, #FF2D95 0%, #FF4DB8 40%, #00F0FF 100%)",
-        "neon-sweep": "linear-gradient(90deg, #FF2D95 0%, #B026FF 50%, #00F0FF 100%)",
-        "diamond-shimmer": "linear-gradient(135deg, rgba(255,45,149,0.14) 0%, rgba(0,240,255,0.08) 50%, rgba(176,38,255,0.12) 100%)",
-        "hero-glow": "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,45,149,0.22) 0%, rgba(176,38,255,0.08) 40%, transparent 70%)",
-        "card-glow": "linear-gradient(135deg, rgba(255,45,149,0.06) 0%, transparent 50%, rgba(0,240,255,0.04) 100%)",
-        "ivory-gradient": "linear-gradient(135deg, #FF6BB8 0%, #FF2D95 100%)",
-        "gold-gradient": "linear-gradient(135deg, #FF6BB8 0%, #FF2D95 45%, #B026FF 100%)",
-        "neon-glow": "radial-gradient(ellipse at center, rgba(255,45,149,0.15) 0%, rgba(0,240,255,0.06) 50%, transparent 70%)",
+        "price-gradient":
+          "linear-gradient(135deg, #FF6BB8 0%, #FF2D95 45%, #B026FF 100%)",
+        "rush-gradient":
+          "linear-gradient(135deg, #FF2D95 0%, #FF4DB8 40%, #00F0FF 100%)",
+        "neon-sweep":
+          "linear-gradient(90deg, #FF2D95 0%, #B026FF 50%, #00F0FF 100%)",
+        "diamond-shimmer":
+          "linear-gradient(135deg, rgba(255,45,149,0.14) 0%, rgba(0,240,255,0.08) 50%, rgba(176,38,255,0.12) 100%)",
+        "hero-glow":
+          "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,45,149,0.22) 0%, rgba(176,38,255,0.08) 40%, transparent 70%)",
+        "card-glow":
+          "linear-gradient(135deg, rgba(255,45,149,0.06) 0%, transparent 50%, rgba(0,240,255,0.04) 100%)",
+        "ivory-gradient":
+          "linear-gradient(135deg, #FF6BB8 0%, #FF2D95 100%)",
+        "gold-gradient":
+          "linear-gradient(135deg, #FF6BB8 0%, #FF2D95 45%, #B026FF 100%)",
+        "neon-glow":
+          "radial-gradient(ellipse at center, rgba(255,45,149,0.15) 0%, rgba(0,240,255,0.06) 50%, transparent 70%)",
       },
       boxShadow: {
-        "card-lift": "0 4px 24px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.05) inset",
+        "card-lift":
+          "0 4px 24px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.05) inset",
         "price-glow": "0 0 28px rgba(255, 45, 149, 0.45), 0 0 8px rgba(0, 240, 255, 0.15)",
         "rush-glow": "0 0 32px rgba(255, 45, 149, 0.5)",
         "neon-glow": "0 0 20px rgba(0, 240, 255, 0.35)",
@@ -69,13 +80,34 @@ const config: Config = {
         "rush-border": "rush-border 3s linear infinite",
       },
       keyframes: {
-        sparkle: { "0%, 100%": { opacity: "0.2", transform: "scale(1)" }, "50%": { opacity: "0.9", transform: "scale(1.15)" } },
-        "price-shimmer": { "0%, 100%": { opacity: "1", filter: "brightness(1)" }, "50%": { opacity: "1", filter: "brightness(1.15)" } },
-        "dopamine-pulse": { "0%, 100%": { boxShadow: "0 0 20px rgba(255,45,149,0.35)" }, "50%": { boxShadow: "0 0 36px rgba(255,45,149,0.6), 0 0 12px rgba(0,240,255,0.3)" } },
-        "neon-breathe": { "0%, 100%": { opacity: "0.6" }, "50%": { opacity: "1" } },
-        "fade-up": { "0%": { opacity: "0", transform: "translateY(12px)" }, "100%": { opacity: "1", transform: "translateY(0)" } },
-        confetti: { "0%": { transform: "translateY(0) rotate(0deg)", opacity: "1" }, "100%": { transform: "translateY(-100px) rotate(360deg)", opacity: "0" } },
-        "rush-border": { "0%, 100%": { borderColor: "rgba(255,45,149,0.4)" }, "50%": { borderColor: "rgba(0,240,255,0.5)" } },
+        sparkle: {
+          "0%, 100%": { opacity: "0.2", transform: "scale(1)" },
+          "50%": { opacity: "0.9", transform: "scale(1.15)" },
+        },
+        "price-shimmer": {
+          "0%, 100%": { opacity: "1", filter: "brightness(1)" },
+          "50%": { opacity: "1", filter: "brightness(1.15)" },
+        },
+        "dopamine-pulse": {
+          "0%, 100%": { boxShadow: "0 0 20px rgba(255,45,149,0.35)" },
+          "50%": { boxShadow: "0 0 36px rgba(255,45,149,0.6), 0 0 12px rgba(0,240,255,0.3)" },
+        },
+        "neon-breathe": {
+          "0%, 100%": { opacity: "0.6" },
+          "50%": { opacity: "1" },
+        },
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(12px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        confetti: {
+          "0%": { transform: "translateY(0) rotate(0deg)", opacity: "1" },
+          "100%": { transform: "translateY(-100px) rotate(360deg)", opacity: "0" },
+        },
+        "rush-border": {
+          "0%, 100%": { borderColor: "rgba(255,45,149,0.4)" },
+          "50%": { borderColor: "rgba(0,240,255,0.5)" },
+        },
       },
     },
   },
