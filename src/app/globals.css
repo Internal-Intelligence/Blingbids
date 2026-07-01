@@ -4,43 +4,57 @@
 
 @layer base {
   :root {
-    --bling-gold: 43 74% 52%;
-    --bling-neon: 51 100% 50%;
-    --bling-black: 240 20% 4%;
-    --bling-surface: 240 15% 8%;
+    --bling-obsidian: 240 6% 4%;
+    --bling-surface: 240 5% 7%;
+    --bling-ivory: 60 9% 96%;
+    --bling-muted: 240 2% 56%;
+    --bling-price: 43 46% 59%;
+    --bling-ice: 210 35% 88%;
   }
 
   body {
-    @apply bg-bling-black text-white antialiased;
-    background-image: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+    @apply bg-bling-obsidian text-bling-ivory antialiased;
+    background-image: radial-gradient(
+      ellipse at top,
+      rgba(214, 228, 240, 0.06) 0%,
+      transparent 55%
+    );
   }
 }
 
 @layer components {
   .bling-card {
-    @apply rounded-2xl border border-bling-border bg-bling-card/80 backdrop-blur-sm;
+    @apply rounded-2xl border border-white/[0.08] bg-bling-card/90 shadow-card-lift backdrop-blur-sm;
   }
 
-  .bling-btn-gold {
-    @apply rounded-xl bg-gold-gradient px-6 py-3 font-semibold text-bling-black shadow-gold-glow transition-all hover:scale-105 active:scale-95;
+  .bling-btn-primary {
+    @apply rounded-xl bg-ivory-gradient px-6 py-3 font-semibold text-bling-obsidian shadow-card-lift transition-all hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bling-ice/50;
+  }
+
+  .bling-btn-bid {
+    @apply rounded-xl bg-price-gradient px-6 py-3 font-semibold text-bling-obsidian shadow-price-glow transition-all hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bling-price/40;
   }
 
   .bling-btn-hold {
-    @apply rounded-2xl border-2 border-bling-neon bg-bling-gold/20 px-8 py-4 text-lg font-bold text-bling-neon shadow-hold-pulse animate-gold-pulse;
+    @apply rounded-2xl border border-white/15 bg-bling-surface px-8 py-4 text-lg font-bold text-bling-ivory shadow-hold-pulse transition-all hover:-translate-y-0.5 hover:border-bling-ice/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bling-ice/40;
   }
 
   .trust-badge {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-bling-gold/40 bg-bling-gold/10 px-3 py-1 text-xs font-medium text-bling-gold-light;
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-bling-ivory/90;
   }
 
   .diamond-sparkle::after {
     content: "✦";
-    @apply ml-1 inline-block animate-sparkle text-bling-neon;
+    @apply ml-1 inline-block animate-sparkle text-bling-ice/60;
   }
 }
 
 @layer utilities {
+  .text-price {
+    @apply bg-price-gradient bg-clip-text font-semibold tabular-nums tracking-tight text-transparent;
+  }
+
   .text-gold-gradient {
-    @apply bg-gold-gradient bg-clip-text text-transparent;
+    @apply text-price;
   }
 }

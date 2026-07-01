@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { BlingAssistant } from "@/components/grok/BlingAssistant";
@@ -8,6 +9,12 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
@@ -26,13 +33,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} font-body min-h-screen`}>
+      <body className={`${inter.variable} ${cormorant.variable} font-body min-h-screen`}>
         <Header />
         <main className="mx-auto min-h-[calc(100vh-8rem)] max-w-7xl px-4 py-8">
           {children}
         </main>
         <Footer />
         <BlingAssistant />
+        <Analytics />
       </body>
     </html>
   );

@@ -46,3 +46,4 @@ test-ledger/
 
 # merchant turnover data (runtime)
 /data/merchant/*.json
+.env*
