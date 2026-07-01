@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔴 LIVE — 5.50ct Natural Diamond Solitaire | Blingbids.com</title>
+  <meta name="description" content="5.50ct Natural Diamond Solitaire in 14kt. Start $23,900. Buy Now $27,500. Live now on Blingbids.com" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bling: { gold: '#D4AF37', neon: '#FFD700', black: '#0A0A0F', card: '#1A1A24', border: '#2A2A3A' }
+          },
+          animation: { pulseGold: 'pulseGold 2s ease-in-out infinite', scrollChat: 'scrollChat 20s linear infinite' },
+          keyframes: {
+            pulseGold: { '0%,100%': { boxShadow: '0 0 20px rgba(212,175,55,0.4)' }, '50%': { boxShadow: '0 0 40px rgba(255,215,0,0.8)' } },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #0A0A0F; background-image: radial-gradient(ellipse at top, rgba(212,175,55,0.08) 0%, transparent 50%); }
+    .gold-text { background: linear-gradient(135deg, #D4AF37, #FFD700, #9A7B0A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gold-btn { background: linear-gradient(135deg, #D4AF37, #FFD700); color: #0A0A0F; }
+    .chat-scroll { animation: scrollChat 25s linear infinite; }
+    @keyframes scrollChat { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+    .thumb.active { ring: 2px solid #FFD700; opacity: 1; }
+    .confetti { position: fixed; pointer-events: none; z-index: 9999; font-size: 1.5rem; animation: fall 1.5s ease-out forwards; }
+    @keyframes fall { to { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+  </style>
+</head>
+<body class="text-white antialiased min-h-screen">
+
+  <!-- DEPLOY BANNER -->
+  <div id="deployBanner" class="hidden fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-6">
+    <div class="max-w-lg w-full bg-bling-card border border-bling-gold/50 rounded-2xl p-8 text-center animate-pulseGold">
+      <div class="text-5xl mb-4">🚀</div>
+      <h2 class="text-2xl font-bold gold-text mb-2">Deploying to Live Room…</h2>
+      <p class="text-gray-400 mb-4" id="deployStatus">Connecting WebSocket…</p>
+      <div class="h-2 bg-gray-800 rounded-full overflow-hidden"><div id="deployBar" class="h-full gold-btn transition-all duration-300" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <!-- SOLD OVERLAY -->
+  <div id="soldOverlay" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center">
+    <div class="text-center">
+      <div class="text-6xl mb-4">🎉💎</div>
+      <h2 class="text-4xl font-bold gold-text">SOLD!</h2>
+      <p class="text-xl text-bling-neon mt-2" id="soldAmount"></p>
+    </div>
+  </div>
+
+  <header class="sticky top-0 z-40 border-b border-bling-border/50 bg-bling-black/95 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="https://blingbids.com" class="flex items-center gap-2 font-bold text-lg">
+        <span class="gold-text">Bling</span><span>bids</span><span class="text-xs text-gray-500">.com</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <span class="flex items-center gap-1 bg-red-600 px-2 py-0.5 rounded-full text-xs font-bold animate-pulse">🔴 LIVE</span>
+        <span class="text-sm text-gray-400" id="viewerCount">847 watching</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6">
+    <!-- URGENCY STRIP -->
+    <div class="mb-4 rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 flex flex-wrap items-center justify-between gap-2">
+      <p class="font-semibold text-red-300">⏰ Seller just dropped the price 🔥 Needs gone tonight!</p>
+      <div class="flex items-center gap-2 font-mono text-lg font-bold text-bling-neon">
+        <span>Closes in</span>
+        <span id="countdown">08:00:00</span>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-6">
+      <!-- GALLERY 60% -->
+      <div class="lg:col-span-7 space-y-4">
+        <div class="relative aspect-square rounded-2xl overflow-hidden border border-bling-border bg-bling-card">
+          <img id="mainImage" src="assets/macro-sparkle.jpg" alt="5.50ct Diamond Solitaire macro" class="w-full h-full object-cover" />
+          <div class="absolute top-3 left-3 bg-red-600 px-3 py-1 rounded-full text-sm font-bold">PRICE DROP</div>
+          <div class="absolute bottom-3 left-3 bg-black/70 px-3 py-1 rounded-lg text-sm">Bling Vault Drop ✦</div>
+        </div>
+        <div class="grid grid-cols-5 gap-2">
+          <button onclick="setImage(0)" class="thumb active aspect-square rounded-lg overflow-hidden border border-bling-border opacity-60 hover:opacity-100 transition"><img src="assets/macro-sparkle.jpg" alt="Macro" class="w-full h-full object-cover" /></button>
+          <button onclick="setImage(1)" class="thumb aspect-square rounded-lg overflow-hidden border border-bling-border opacity-60 hover:opacity-100 transition"><img src="assets/on-model.jpg" alt="On model" class="w-full h-full object-cover" /></button>
+          <button onclick="setImage(2)" class="thumb aspect-square rounded-lg overflow-hidden border border-bling-border opacity-60 hover:opacity-100 transition"><img src="assets/pendant-mockup.jpg" alt="Pendant" class="w-full h-full object-cover" /></button>
+          <button onclick="setImage(3)" class="thumb aspect-square rounded-lg overflow-hidden border border-bling-border opacity-60 hover:opacity-100 transition"><img src="assets/size-comparison.jpg" alt="Size" class="w-full h-full object-cover" /></button>
+          <button onclick="setImage(4)" class="thumb aspect-square rounded-lg overflow-hidden border border-bling-border opacity-60 hover:opacity-100 transition"><img src="assets/price-drop-badge.jpg" alt="Price drop" class="w-full h-full object-cover" /></button>
+        </div>
+
+        <div class="rounded-2xl border border-bling-border bg-bling-card p-5 space-y-3">
+          <h1 class="text-2xl md:text-3xl font-bold">5.50ct Natural Diamond Solitaire Set in 14kt</h1>
+          <p class="text-bling-neon font-semibold">Price just slashed — live on Blingbids!</p>
+          <p class="text-gray-400 text-sm">Cost basis target: <span class="text-bling-gold font-bold">$17,000</span> · Seller needs rapid turnover</p>
+          <div class="space-y-2 text-sm text-gray-300">
+            <p>🔥 <strong>Seller just dropped the price — needs gone tonight!</strong></p>
+            <p>💎 <strong>5.5ct statement piece – ring or pendant conversion gold!</strong></p>
+            <p>✦ Inclusion noted but killer deal for size — bid with confidence via Blingbids escrow.</p>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="text-xs border border-bling-gold/40 bg-bling-gold/10 text-bling-neon px-2 py-1 rounded-full">✦ Bling Verified</span>
+            <span class="text-xs border border-blue-400/40 bg-blue-400/10 text-blue-300 px-2 py-1 rounded-full">💎 GIA Review</span>
+            <span class="text-xs border border-emerald-400/40 bg-emerald-400/10 text-emerald-300 px-2 py-1 rounded-full">🛡️ Escrow</span>
+            <span class="text-xs border border-purple-400/40 bg-purple-400/10 text-purple-300 px-2 py-1 rounded-full">↩️ 7-Day Guarantee</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BID PANEL -->
+      <div class="lg:col-span-5 space-y-4">
+        <div class="rounded-2xl border border-bling-gold/30 bg-bling-card p-5 space-y-4 shadow-lg animate-pulseGold">
+          <div>
+            <p class="text-xs text-gray-500 uppercase tracking-wide">Current High Bid</p>
+            <p class="text-4xl font-bold gold-text" id="currentBid">$24,800</p>
+            <p class="text-sm text-gray-500">Start: $23,900 · Increment: $400</p>
+          </div>
+
+          <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+            <div id="progressBar" class="h-full gold-btn transition-all duration-500" style="width:38%"></div>
+          </div>
+          <p class="text-xs text-right text-gray-500">Target progress → Buy Now $27,500</p>
+
+          <!-- PAYMENT TOGGLE -->
+          <div class="flex rounded-xl border border-bling-border bg-gray-900 p-1">
+            <button id="btnSol" onclick="setPay('sol')" class="flex-1 py-2 rounded-lg text-sm font-semibold bg-bling-gold/20 text-bling-neon">◎ Solana</button>
+            <button id="btnUsd" onclick="setPay('usd')" class="flex-1 py-2 rounded-lg text-sm font-semibold text-gray-500">$ USD</button>
+          </div>
+
+          <!-- QUICK BIDS -->
+          <div class="grid grid-cols-3 gap-2">
+            <button onclick="bid(400)" class="border border-bling-gold/40 rounded-xl py-2 text-sm hover:bg-bling-gold/10">+$400</button>
+            <button onclick="bid(800)" class="border border-bling-gold/40 rounded-xl py-2 text-sm hover:bg-bling-gold/10">+$800</button>
+            <button onclick="bid(1200)" class="border border-bling-gold/40 rounded-xl py-2 text-sm hover:bg-bling-gold/10">+$1200</button>
+          </div>
+
+          <button onclick="placeBid()" class="w-full gold-btn font-bold py-4 rounded-xl text-lg hover:scale-[1.02] active:scale-95 transition shadow-lg">
+            ⚡ PLACE BID — <span id="nextBid">$25,200</span>
+          </button>
+
+          <button onclick="buyNow()" class="w-full border-2 border-bling-neon text-bling-neon font-bold py-4 rounded-xl text-lg hover:bg-bling-neon/10 transition">
+            💰 INSTANT BUY — $27,500
+          </button>
+
+          <p class="text-center text-xs text-gray-500">1.5% buyer fee · Solana escrow · 7-day inspection</p>
+        </div>
+
+        <!-- SELLER ACTIONS -->
+        <div class="rounded-2xl border border-bling-border bg-bling-card p-4 space-y-2">
+          <p class="text-xs text-gray-500 uppercase font-semibold">Seller / Flipper Controls</p>
+          <button onclick="markSold()" class="w-full bg-emerald-600 hover:bg-emerald-500 font-semibold py-3 rounded-xl transition">✅ Mark Sold → Load Next Item</button>
+          <button onclick="deployLive()" class="w-full border border-bling-gold text-bling-gold hover:bg-bling-gold/10 font-semibold py-3 rounded-xl transition">🚀 Deploy to Live Room</button>
+        </div>
+
+        <!-- CHAT -->
+        <div class="rounded-2xl border border-bling-border bg-bling-card overflow-hidden h-64 flex flex-col">
+          <div class="px-4 py-2 border-b border-bling-border font-semibold text-bling-gold text-sm">Live Chat 🔥</div>
+          <div class="flex-1 overflow-hidden relative">
+            <div id="chatInner" class="chat-scroll absolute inset-x-0 p-3 space-y-2 text-sm">
+              <!-- duplicated for seamless scroll -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-bling-border py-6 text-center text-xs text-gray-600">
+    © 2026 Blingbids.com · Jewelry & Gold RWA Live Auctions · Listing #BLING-550-SOL
+  </footer>
+
+  <script>
+    const IMAGES = ['assets/macro-sparkle.jpg','assets/on-model.jpg','assets/pendant-mockup.jpg','assets/size-comparison.jpg','assets/price-drop-badge.jpg'];
+    const START = 23900, INCREMENT = 400, BUY_NOW = 27500, TARGET = 17000;
+    const END_TIME = Date.now() + 8 * 60 * 60 * 1000;
+
+    let currentBid = 24800;
+    let payment = 'sol';
+    let sold = false;
+
+    const CHAT = [
+      { u: 'CryptoKing', m: 'Bidding $24,800 already!!', t: 'bid' },
+      { u: 'GoldHunter', m: 'This is the one!', t: 'hype' },
+      { u: 'BlingFan', m: '🔥🔥🔥', t: 'emoji' },
+      { u: 'DiamondDealer_NYC', m: '5.5ct for under 25k is INSANE', t: 'msg' },
+      { u: 'SOLwhale', m: 'Needs gone tonight — I\'m in', t: 'msg' },
+      { u: 'JewelryFlipper', m: 'Pendant conversion = free money', t: 'msg' },
+      { u: 'Blingbids', m: 'New high bid: $24,800', t: 'system' },
+      { u: 'WatchGuy', m: 'Bling Vault drops never miss', t: 'msg' },
+      { u: 'GemQueen', m: 'Inclusion noted but SIZE wins', t: 'msg' },
+      { u: 'BidBot_3000', m: 'Bidding $24,800 already!!', t: 'bid' },
+      { u: 'ChainGang', m: 'This is the one! 💎', t: 'hype' },
+    ];
+
+    const NEXT_ITEM = {
+      title: '4.20ct Oval Halo — 18kt White Gold (Next Bling Vault Drop)',
+      start: 18900, increment: 300, buyNow: 22400, hours: 6
+    };
+
+    function fmt(n) { return '$' + n.toLocaleString('en-US'); }
+    function updateBidUI() {
+      document.getElementById('currentBid').textContent = fmt(currentBid);
+      document.getElementById('nextBid').textContent = fmt(currentBid + INCREMENT);
+      const pct = Math.min(((currentBid - START) / (BUY_NOW - START)) * 100, 100);
+      document.getElementById('progressBar').style.width = pct + '%';
+    }
+
+    function setImage(i) {
+      document.getElementById('mainImage').src = IMAGES[i];
+      document.querySelectorAll('.thumb').forEach((el, j) => {
+        el.classList.toggle('active', j === i);
+        el.classList.toggle('opacity-100', j === i);
+        el.classList.toggle('opacity-60', j !== i);
+      });
+    }
+
+    function setPay(p) {
+      payment = p;
+      document.getElementById('btnSol').className = 'flex-1 py-2 rounded-lg text-sm font-semibold ' + (p === 'sol' ? 'bg-bling-gold/20 text-bling-neon' : 'text-gray-500');
+      document.getElementById('btnUsd').className = 'flex-1 py-2 rounded-lg text-sm font-semibold ' + (p === 'usd' ? 'bg-bling-gold/20 text-bling-neon' : 'text-gray-500');
+    }
+
+    function addChatEntry(u, m, t) {
+      const colors = { bid: 'text-bling-gold bg-bling-gold/10', hype: 'text-bling-neon font-bold', system: 'text-center text-bling-neon', emoji: 'text-center text-2xl', msg: 'text-gray-300' };
+      return `<div class="${colors[t] || colors.msg} rounded-lg px-2 py-1"><span class="font-semibold text-bling-gold">${u}:</span> ${m}</div>`;
+    }
+
+    function initChat() {
+      const html = CHAT.map(c => addChatEntry(c.u, c.m, c.t)).join('');
+      document.getElementById('chatInner').innerHTML = html + html;
+    }
+
+    function bid(amt) {
+      if (sold) return;
+      currentBid += amt;
+      updateBidUI();
+      toast(`Bid placed: ${fmt(currentBid)} via ${payment.toUpperCase()}`);
+      confetti();
+    }
+
+    function placeBid() {
+      bid(INCREMENT);
+    }
+
+    function buyNow() {
+      if (sold) return;
+      currentBid = BUY_NOW;
+      updateBidUI();
+      confetti();
+      setTimeout(() => markSold(BUY_NOW), 800);
+    }
+
+    function toast(msg) {
+      const el = document.createElement('div');
+      el.className = 'fixed bottom-4 left-1/2 -translate-x-1/2 bg-bling-card border border-bling-gold px-4 py-2 rounded-xl text-sm z-50';
+      el.textContent = msg;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 2500);
+    }
+
+    function confetti() {
+      ['✦','💎','🔥','💰','🥇'].forEach((e, i) => {
+        const c = document.createElement('span');
+        c.className = 'confetti';
+        c.textContent = e;
+        c.style.left = (20 + Math.random() * 60) + '%';
+        c.style.top = '30%';
+        c.style.animationDelay = (i * 0.1) + 's';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 2000);
+      });
+    }
+
+    function tick() {
+      const left = Math.max(0, END_TIME - Date.now());
+      const h = Math.floor(left / 3600000);
+      const m = Math.floor((left % 3600000) / 60000);
+      const s = Math.floor((left % 60000) / 1000);
+      document.getElementById('countdown').textContent =
+        String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+      if (left === 0 && !sold) toast('⏰ Auction ended — highest bid wins!');
+    }
+
+    function markSold(amount) {
+      sold = true;
+      const final = amount || currentBid;
+      document.getElementById('soldAmount').textContent = 'Final: ' + fmt(final);
+      document.getElementById('soldOverlay').classList.remove('hidden');
+      confetti();
+      setTimeout(() => {
+        if (confirm('✅ SOLD ' + fmt(final) + '\n\nLoad next item for chain flipping?\n\n"' + NEXT_ITEM.title + '"')) {
+          loadNextItem();
+        }
+      }, 2000);
+    }
+
+    function loadNextItem() {
+      document.getElementById('soldOverlay').classList.add('hidden');
+      sold = false;
+      currentBid = NEXT_ITEM.start;
+      updateBidUI();
+      document.querySelector('h1').textContent = NEXT_ITEM.title;
+      toast('🔄 Next item loaded — ' + fmt(NEXT_ITEM.start) + ' start');
+      document.getElementById('countdown').parentElement.querySelector('span').textContent = 'Closes in';
+    }
+
+    function deployLive() {
+      const banner = document.getElementById('deployBanner');
+      const bar = document.getElementById('deployBar');
+      const status = document.getElementById('deployStatus');
+      banner.classList.remove('hidden');
+      const steps = ['Connecting WebSocket…','Syncing escrow contract…','Broadcasting to 847 viewers…','Live room ACTIVE on blingbids.com'];
+      let i = 0;
+      const iv = setInterval(() => {
+        bar.style.width = ((i + 1) / steps.length * 100) + '%';
+        status.textContent = steps[i];
+        i++;
+        if (i >= steps.length) {
+          clearInterval(iv);
+          setTimeout(() => {
+            banner.classList.add('hidden');
+            toast('🚀 LIVE on Blingbids.com — bidding open!');
+            document.getElementById('viewerCount').textContent = (847 + Math.floor(Math.random()*200)) + ' watching';
+          }, 600);
+        }
+      }, 700);
+    }
+
+    initChat();
+    updateBidUI();
+    setInterval(tick, 1000);
+    tick();
+    setInterval(() => {
+      document.getElementById('viewerCount').textContent = (800 + Math.floor(Math.random()*100)) + ' watching';
+    }, 8000);
+  </script>
+</body>
+</html>
