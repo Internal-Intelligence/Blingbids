@@ -4,39 +4,57 @@
 
 @layer base {
   :root {
-    --bling-obsidian: 240 6% 4%;
-    --bling-surface: 240 5% 7%;
-    --bling-ivory: 60 9% 96%;
-    --bling-muted: 240 2% 56%;
-    --bling-price: 43 46% 59%;
-    --bling-ice: 210 35% 88%;
+    --bling-obsidian: 260 40% 4%;
+    --bling-surface: 260 25% 8%;
+    --bling-ivory: 240 100% 98%;
+    --bling-muted: 260 12% 60%;
+    --bling-price: 330 100% 59%;
+    --bling-rush: 330 100% 59%;
+    --bling-neon: 186 100% 50%;
+    --bling-violet: 280 100% 58%;
   }
 
   body {
     @apply bg-bling-obsidian text-bling-ivory antialiased;
-    background-image: radial-gradient(
-      ellipse at top,
-      rgba(214, 228, 240, 0.06) 0%,
-      transparent 55%
-    );
+    background-image:
+      radial-gradient(ellipse 100% 80% at 50% -20%, rgba(255, 45, 149, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(176, 38, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 30% at 0% 100%, rgba(0, 240, 255, 0.05) 0%, transparent 50%);
+  }
+
+  ::selection {
+    @apply bg-bling-rush/40 text-white;
   }
 }
 
 @layer components {
   .bling-card {
     @apply rounded-2xl border border-white/[0.08] bg-bling-card/90 shadow-card-lift backdrop-blur-sm;
+    background-image: linear-gradient(
+      135deg,
+      rgba(255, 45, 149, 0.04) 0%,
+      transparent 50%,
+      rgba(0, 240, 255, 0.03) 100%
+    );
+  }
+
+  .bling-card:hover {
+    @apply border-bling-rush/20;
+    box-shadow:
+      0 4px 28px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(255, 45, 149, 0.08);
   }
 
   .bling-btn-primary {
-    @apply rounded-xl bg-ivory-gradient px-6 py-3 font-semibold text-bling-obsidian shadow-card-lift transition-all hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bling-ice/50;
+    @apply rounded-xl bg-rush-gradient px-6 py-3 font-bold text-white shadow-rush-glow transition-all hover:-translate-y-0.5 hover:shadow-price-glow active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bling-neon/50;
   }
 
   .bling-btn-bid {
-    @apply rounded-xl bg-price-gradient px-6 py-3 font-semibold text-bling-obsidian shadow-price-glow transition-all hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bling-price/40;
+    @apply rounded-xl bg-price-gradient px-6 py-3 font-bold text-white shadow-price-glow transition-all hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bling-rush/50 animate-dopamine-pulse;
   }
 
   .bling-btn-hold {
-    @apply rounded-2xl border border-white/15 bg-bling-surface px-8 py-4 text-lg font-bold text-bling-ivory shadow-hold-pulse transition-all hover:-translate-y-0.5 hover:border-bling-ice/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bling-ice/40;
+    @apply rounded-2xl border border-bling-violet/30 bg-bling-surface px-8 py-4 text-lg font-bold text-bling-ivory shadow-hold-pulse transition-all hover:-translate-y-0.5 hover:border-bling-neon/40 hover:shadow-neon-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bling-violet/40;
   }
 
   .trust-badge {
@@ -45,16 +63,36 @@
 
   .diamond-sparkle::after {
     content: "✦";
-    @apply ml-1 inline-block animate-sparkle text-bling-ice/60;
+    @apply ml-1 inline-block animate-sparkle text-bling-neon;
+  }
+
+  .live-pill {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-rush-gradient px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-rush-glow;
+  }
+
+  .dopamine-strip {
+    @apply rounded-full bg-neon-sweep px-4 py-1 text-xs font-bold uppercase tracking-widest text-white;
   }
 }
 
 @layer utilities {
   .text-price {
-    @apply bg-price-gradient bg-clip-text font-semibold tabular-nums tracking-tight text-transparent;
+    @apply bg-rush-gradient bg-clip-text font-bold tabular-nums tracking-tight text-transparent;
   }
 
   .text-gold-gradient {
     @apply text-price;
+  }
+
+  .text-neon {
+    @apply text-bling-neon;
+  }
+
+  .glow-rush {
+    text-shadow: 0 0 20px rgba(255, 45, 149, 0.5);
+  }
+
+  .glow-neon {
+    text-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
   }
 }
