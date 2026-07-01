@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bling-gold: 43 74% 52%;
+    --bling-neon: 51 100% 50%;
+    --bling-black: 240 20% 4%;
+    --bling-surface: 240 15% 8%;
+  }
+
+  body {
+    @apply bg-bling-black text-white antialiased;
+    background-image: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  .bling-card {
+    @apply rounded-2xl border border-bling-border bg-bling-card/80 backdrop-blur-sm;
+  }
+
+  .bling-btn-gold {
+    @apply rounded-xl bg-gold-gradient px-6 py-3 font-semibold text-bling-black shadow-gold-glow transition-all hover:scale-105 active:scale-95;
+  }
+
+  .bling-btn-hold {
+    @apply rounded-2xl border-2 border-bling-neon bg-bling-gold/20 px-8 py-4 text-lg font-bold text-bling-neon shadow-hold-pulse animate-gold-pulse;
+  }
+
+  .trust-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-bling-gold/40 bg-bling-gold/10 px-3 py-1 text-xs font-medium text-bling-gold-light;
+  }
+
+  .diamond-sparkle::after {
+    content: "✦";
+    @apply ml-1 inline-block animate-sparkle text-bling-neon;
+  }
+}
+
+@layer utilities {
+  .text-gold-gradient {
+    @apply bg-gold-gradient bg-clip-text text-transparent;
+  }
+}
