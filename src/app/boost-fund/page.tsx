@@ -14,8 +14,8 @@ const LEDGER_ENTRIES = [
 export default function BoostFundPage() {
   return (
     <div>
-      <h1 className="mb-2 text-3xl font-bold text-gold-gradient">Bling Boost Fund</h1>
-      <p className="mb-8 max-w-2xl text-bling-gold-light/70">
+      <h1 className="mb-2 font-display text-3xl font-semibold text-bling-ivory">Bling Boost Fund</h1>
+      <p className="mb-8 max-w-2xl text-bling-muted">
         25% of every platform fee is instantly routed on-chain to this transparent fund.
         It auto-subsidizes featured slots, boosts, mystery prizes, and promotions for ALL auctions.
       </p>
@@ -23,11 +23,11 @@ export default function BoostFundPage() {
       <BoostFundBanner stats={MOCK_BOOST_FUND} />
 
       <section className="mt-12">
-        <h2 className="mb-4 text-xl font-bold text-white">On-Chain Transparency Ledger</h2>
+        <h2 className="mb-4 font-display text-xl font-semibold text-bling-ivory">On-Chain Transparency Ledger</h2>
         <div className="bling-card overflow-hidden">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-bling-border text-left text-bling-gold-light/60">
+              <tr className="border-b border-white/[0.06] text-left text-bling-muted">
                 <th className="p-4">Date</th>
                 <th className="p-4">Type</th>
                 <th className="p-4">Auction</th>
@@ -36,10 +36,10 @@ export default function BoostFundPage() {
             </thead>
             <tbody>
               {LEDGER_ENTRIES.map((entry, i) => (
-                <tr key={i} className="border-b border-bling-border/50">
-                  <td className="p-4 text-bling-gold-light/80">{entry.date}</td>
-                  <td className="p-4">{entry.type}</td>
-                  <td className="p-4 text-bling-gold-light/60">{entry.auction}</td>
+                <tr key={i} className="border-b border-white/[0.06]">
+                  <td className="p-4 text-bling-muted">{entry.date}</td>
+                  <td className="p-4 text-bling-ivory">{entry.type}</td>
+                  <td className="p-4 text-bling-muted">{entry.auction}</td>
                   <td className={`p-4 text-right font-mono ${entry.amount > 0 ? "text-emerald-400" : "text-red-400"}`}>
                     {entry.amount > 0 ? "+" : ""}{formatUSD(Math.abs(entry.amount))}
                   </td>
@@ -51,13 +51,13 @@ export default function BoostFundPage() {
       </section>
 
       <section className="mt-8 bling-card p-6">
-        <h3 className="mb-2 font-semibold text-bling-gold">Monthly Vault Proof</h3>
-        <p className="mb-4 text-sm text-bling-gold-light/60">
+        <h3 className="mb-2 font-semibold text-bling-ivory">Monthly Vault Proof</h3>
+        <p className="mb-4 text-sm text-bling-muted">
           Third-party attestation of fund reserves — updated monthly (Oro/PAXG-style).
         </p>
         <a
           href={MOCK_BOOST_FUND.lastVaultProofUrl}
-          className="inline-flex items-center gap-2 text-sm text-bling-neon hover:underline"
+          className="inline-flex items-center gap-2 text-sm text-bling-ice hover:underline"
         >
           View June 2026 Vault Proof
           <ExternalLink className="h-4 w-4" />
